@@ -310,3 +310,843 @@
   .badge-powerbi { background: #fef3e2; color: #92400e; border: 1px solid #fde68a; }
   .badge-azure { background: var(--accent-light); color: var(--accent); border: 1px solid rgba(45,106,106,0.25); }
   .badge-etl { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+  .cs-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem; font-weight: 700;
+    line-height: 1.25; margin-bottom: 1.5rem;
+  }
+  .cs-title-sm {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem; font-weight: 700;
+    line-height: 1.3; margin-bottom: 1.25rem;
+  }
+
+  /* Problem → Solution → Impact flow */
+  .cs-story { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+  .cs-story-item { display: flex; gap: 12px; align-items: flex-start; }
+  .cs-story-icon {
+    width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+  }
+  .icon-problem { background: #fef2f2; }
+  .icon-solution { background: var(--accent-light); }
+  .icon-impact { background: #f0fdf4; }
+  .cs-story-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;
+  }
+  .cs-story-label.lbl-problem { color: #ef4444; }
+  .cs-story-label.lbl-solution { color: var(--accent2); }
+  .cs-story-label.lbl-impact { color: #10b981; }
+  .cs-story-body { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Impact metrics row */
+  .cs-metrics {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    padding: 1rem 0; margin: 1rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-metric-val {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem; font-weight: 800;
+  }
+  .cs-metric-lbl { font-size: 0.68rem; color: var(--text-muted); margin-top: 1px; }
+  .cs-metric-val.green { color: #10b981; }
+  .cs-metric-val.blue { color: var(--accent2); }
+  .cs-metric-val.amber { color: var(--accent3); }
+
+  .cs-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-tag {
+    font-size: 0.7rem; padding: 2px 9px; border-radius: 4px;
+    background: var(--bg-mid); color: var(--ink-mid);
+    border: 1px solid var(--border);
+  }
+
+  /* Mini donut preview */
+  .mini-donut-wrap { display: flex; gap: 0.5rem; align-items: center; flex: 1; }
+  .mini-donut { width: 70px; height: 70px; flex-shrink: 0; }
+  .mini-legend { display: flex; flex-direction: column; gap: 4px; }
+  .mini-legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.6rem; color: var(--text-muted); }
+  .mini-legend-dot { width: 5px; height: 5px; border-radius: 50%; }
+
+  /* Scatter preview */
+  .scatter-preview { flex: 1; position: relative; height: 100%; min-height: 120px; }
+  .scatter-dot {
+    position: absolute; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.5rem; color: rgba(255,255,255,0.6);
+    font-weight: 600;
+  }
+  .scatter-line-h {
+    position: absolute; left: 0; right: 0; height: 1px;
+    background: rgba(6,182,212,0.4); border-top: 1px dashed rgba(6,182,212,0.4);
+  }
+  .scatter-line-v {
+    position: absolute; top: 0; bottom: 0; width: 1px;
+    background: rgba(6,182,212,0.4);
+    border-left: 1px dashed rgba(6,182,212,0.4);
+  }
+  .scatter-label { position: absolute; font-size: 0.5rem; color: var(--text-muted); white-space: nowrap; }
+
+  /* Transaction preview */
+  .tx-preview-inner { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .tx-bar-row { display: flex; align-items: center; gap: 6px; }
+  .tx-bar-row:nth-child(1) .tx-bar-fill { background: var(--accent); width: 85%; }
+  .tx-bar-row:nth-child(2) .tx-bar-fill { background: var(--accent-warm); width: 60%; }
+  .tx-bar-row:nth-child(3) .tx-bar-fill { background: var(--ink-light); width: 40%; }
+  .tx-bar-label { font-size: 0.58rem; color: var(--text-muted); width: 70px; text-align: right; flex-shrink: 0; }
+  .tx-bar-track { flex: 1; height: 14px; background: rgba(0,0,0,0.05); border-radius: 3px; overflow: hidden; }
+  .tx-bar-fill { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 6px; }
+  .tx-bar-val { font-size: 0.58rem; font-weight: 600; color: #fff; }
+
+  /* ── CREDENTIALS GRID ── */
+  #certification { background: var(--navy-mid); }
+  .cred-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .cred-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+    position: relative; overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .cred-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .cred-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--cred-color, var(--accent2)), transparent);
+  }
+  .cred-top { display: flex; align-items: center; justify-content: space-between; }
+  .cred-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .cred-issuer {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+  .cred-title {
+    font-family: 'Playfair Display', Georgia, serif; font-size: 0.95rem; font-weight: 700;
+    color: var(--text-primary); line-height: 1.3;
+  }
+  .cred-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: -4px; }
+  .cred-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+  .cred-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .cred-tag {
+    font-size: 0.65rem; padding: 2px 8px; border-radius: 100px;
+    background: rgba(0,0,0,0.03); color: var(--text-muted);
+    border: 1px solid var(--navy-border);
+  }
+  .cred-badge-strip {
+    font-size: 0.72rem; font-weight: 600;
+    padding: 5px 12px; border-radius: 8px;
+    border: 1px solid; text-align: center;
+    margin-top: 4px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--navy); }
+  .services-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .service-item {
+    padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg-card); box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .service-item:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .service-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.75rem; }
+  .service-item h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .service-item p { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy-mid); text-align: center; }
+  .contact-inner { max-width: 580px; margin: 0 auto; }
+  #contact h2 { margin-bottom: 0.75rem; }
+  #contact .section-intro { margin: 0 auto 2.5rem; }
+  .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left; margin-bottom: 2rem; }
+  .contact-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; box-shadow: var(--shadow-sm); }
+  .contact-card .cc-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+  .contact-card .cc-value { font-size: 0.9rem; color: var(--text-primary); font-weight: 400; }
+  .contact-card .cc-value a { color: var(--accent); text-decoration: none; }
+  .agency-note {
+    padding: 1.25rem 1.5rem;
+    background: var(--accent-light); border: 1px solid rgba(45,106,106,0.2);
+    border-radius: 8px; font-size: 0.875rem; color: var(--ink-mid); text-align: left;
+  }
+  .agency-note strong { color: var(--accent); font-weight: 600; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 6%; border-top: 1px solid var(--border);
+    background: var(--bg-mid);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--ink-light);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.7s ease both; }
+  .hero > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero > *:nth-child(5) { animation-delay: 0.5s; }
+  .hero > *:nth-child(6) { animation-delay: 0.6s; }
+
+  @media (max-width: 900px) {
+    .csf-inner { grid-template-columns: 1fr; }
+    .csf-content { border-right: none; border-bottom: 1px solid var(--navy-border); }
+    .case-study-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 1rem 5%; }
+    .nav-links { display: none; }
+    section { padding: 4rem 5%; }
+    .contact-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ── VIEW REPORT BUTTON ── */
+  .view-report-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin-top: 1rem;
+    padding: 0.55rem 1.1rem;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.8rem; font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 1px 3px rgba(45,106,106,0.25);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    width: fit-content;
+  }
+  .view-report-btn:hover {
+    background: #235555;
+    box-shadow: 0 4px 12px rgba(45,106,106,0.3);
+    transform: translateY(-1px);
+  }
+  .view-report-btn[href="YOUR_POWER_BI_REPORT_URL_HERE"] {
+    background: var(--bg-mid);
+    color: var(--ink-light);
+    border: 1px dashed var(--border-dark);
+    box-shadow: none;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .view-report-btn[href="YOUR_POWER_BI_REPORT_URL_HERE"]::after {
+    content: ' (link pending)';
+    font-size: 0.68rem;
+    font-weight: 400;
+    opacity: 0.7;
+  }
+
+  /* ── CODE MODAL ── */
+  .code-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.55rem 1.25rem;
+    background: var(--bg-mid);
+    border: 1px solid var(--border-dark);
+    color: var(--accent); font-size: 0.82rem; font-weight: 600;
+    border-radius: 6px; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .code-btn:hover { background: var(--accent-light); border-color: var(--accent); }
+
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: #1c1917;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    width: 100%; max-width: 860px;
+    max-height: 88vh;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  }
+
+  .modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+    flex-shrink: 0;
+  }
+  .modal-header-left { display: flex; align-items: center; gap: 10px; }
+  .modal-title {
+    font-family: 'Playfair Display', Georgia, serif; font-size: 0.9rem; font-weight: 700;
+    color: #e2e8f0;
+  }
+  .modal-subtitle { font-size: 0.72rem; color: #4f5e7a; margin-top: 1px; }
+  .modal-lang-badge {
+    font-size: 0.68rem; font-weight: 600; padding: 2px 10px; border-radius: 100px;
+    background: rgba(59,130,246,0.15); color: #3b82f6;
+    border: 1px solid rgba(59,130,246,0.25);
+  }
+  .modal-close {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    color: #8b9ab5; font-size: 1.1rem; width: 32px; height: 32px;
+    border-radius: 8px; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .modal-close:hover { background: rgba(239,68,68,0.15); color: #ef4444; border-color: rgba(239,68,68,0.3); }
+
+  .modal-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.6rem 1.5rem;
+    background: rgba(255,255,255,0.015);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    flex-shrink: 0;
+  }
+  .modal-file-path {
+    font-family: monospace; font-size: 0.72rem;
+    color: #4f5e7a; display: flex; align-items: center; gap: 6px;
+  }
+  .modal-file-path span { color: #8b9ab5; }
+  .copy-btn {
+    display: flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: #8b9ab5; font-size: 0.72rem; font-weight: 500;
+    padding: 4px 12px; border-radius: 6px; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .copy-btn:hover { background: rgba(0,201,167,0.12); color: #00c9a7; border-color: rgba(0,201,167,0.3); }
+  .copy-btn.copied { background: rgba(16,185,129,0.15); color: #10b981; border-color: rgba(16,185,129,0.3); }
+
+  .modal-code-wrap {
+    overflow-y: auto; flex: 1;
+    padding: 0;
+  }
+  .modal-code-wrap pre {
+    margin: 0; padding: 1.5rem;
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.78rem; line-height: 1.65;
+    color: #e2e8f0; white-space: pre;
+    counter-reset: line;
+  }
+
+  /* Syntax highlight colours */
+  .tok-comment  { color: #4f6a7a; font-style: italic; }
+  .tok-keyword  { color: #c792ea; }
+  .tok-string   { color: #c3e88d; }
+  .tok-number   { color: #f78c6c; }
+  .tok-builtin  { color: #82aaff; }
+  .tok-func     { color: #82aaff; }
+  .tok-decorator{ color: #f59e0b; }
+
+  .modal-footer {
+    padding: 0.75rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.015);
+    flex-shrink: 0;
+  }
+  .modal-footer-note { font-size: 0.7rem; color: #4f5e7a; }
+  .modal-footer-note strong { color: #8b9ab5; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Rodney Roman</div>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#projects">Case Studies</a></li>
+    <li><a href="#certification">Certification</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow"><span></span>Data Analyst Portfolio</div>
+  <h1>Turning Complex Data<br>Into <em>Clear Decisions</em></h1>
+  <p class="hero-sub">
+    Microsoft Certified Power BI Associate (PL-300) with hands-on expertise in Azure cloud pipelines, ETL automation, and interactive dashboards that drive real business outcomes.
+  </p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View Case Studies ↓</a>
+    <a href="#contact" class="btn-outline">Get In Touch</a>
+  </div>
+  <div class="hero-badges">
+    <div class="badge"><div class="badge-dot"></div>PL-300 Certified</div>
+    <div class="badge"><div class="badge-dot blue"></div>Microsoft Azure</div>
+    <div class="badge"><div class="badge-dot amber"></div>Power BI Expert</div>
+    <div class="badge"><div class="badge-dot"></div>ETL Pipelines</div>
+    <div class="badge"><div class="badge-dot blue"></div>Web App Development</div>
+    <div class="badge"><div class="badge-dot amber"></div>AI-Assisted Automation</div>
+  </div>
+</section>
+
+<section id="expertise">
+  <div class="section-label">What I Do</div>
+  <h2>Core Expertise</h2>
+  <p class="section-intro">End-to-end data solutions — from raw ingestion in Azure to polished, decision-ready dashboards.</p>
+  <div class="expertise-grid">
+    <div class="exp-card" style="--accent-line: linear-gradient(90deg, #f59e0b, transparent);">
+      <div class="exp-icon amber">📊</div>
+      <h3>Power BI Dashboards & Reports</h3>
+      <p>Building executive-grade dashboards and detailed analytical reports with DAX, data modeling, and compelling visual storytelling.</p>
+      <div class="exp-tags">
+        <span class="exp-tag">DAX</span><span class="exp-tag">Power Query</span>
+        <span class="exp-tag">Data Modeling</span><span class="exp-tag">RLS</span>
+        <span class="exp-tag">Power BI Service</span>
+      </div>
+    </div>
+    <div class="exp-card" style="--accent-line: linear-gradient(90deg, #3b82f6, transparent);">
+      <div class="exp-icon blue">☁️</div>
+      <h3>Azure Cloud & ETL Pipelines</h3>
+      <p>Designing and deploying scalable ETL workflows using Azure Databricks, Storage Accounts, Key Vault, and App Services for secure, automated data flows.</p>
+      <div class="exp-tags">
+        <span class="exp-tag">Azure Databricks</span><span class="exp-tag">Storage Account</span>
+        <span class="exp-tag">Key Vault</span><span class="exp-tag">App Services</span><span class="exp-tag">ADF</span>
+      </div>
+    </div>
+    <div class="exp-card" style="--accent-line: linear-gradient(90deg, #00c9a7, transparent);">
+      <div class="exp-icon">🌐</div>
+      <h3>Web App Integration</h3>
+      <p>Connecting data platforms to user-facing web applications using Appsmith and Azure App Services, turning data pipelines into interactive tools.</p>
+      <div class="exp-tags">
+        <span class="exp-tag">Appsmith</span><span class="exp-tag">Azure App Services</span><span class="exp-tag">REST APIs</span><span class="exp-tag">JSON</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">Proven Results</div>
+  <h2>Case Studies</h2>
+  <p class="section-intro">Real enterprise problems solved using robust architectures, smart automation, and impactful data design.</p>
+
+  <div class="case-study-featured">
+    <div class="csf-inner wide-preview">
+      <div class="csf-content">
+        <div>
+          <span class="cs-type-badge badge-powerbi">Power BI Featured Project</span>
+          <h3 class="cs-title">Global Enterprise Non-Production Materials (NPM) Tracker</h3>
+          
+          <div class="cs-story">
+            <div class="cs-story-item">
+              <div class="cs-story-icon icon-problem">🚨</div>
+              <div class="cs-story-text">
+                <div class="cs-story-label lbl-problem">The Problem</div>
+                <div class="cs-story-body">Leadership lacked visual transparency over international material spending, leading to frequent budget overruns and untracked regional expenditure variances.</div>
+              </div>
+            </div>
+            <div class="cs-story-item">
+              <div class="cs-story-icon icon-solution">💡</div>
+              <div class="cs-story-text">
+                <div class="cs-story-label lbl-solution">The Solution</div>
+                <div class="cs-story-body">Engineered an interactive, multi-currency Power BI dashboard integrated with SQL data warehouses. Developed deep DAX time-intelligence metrics to compare actual vs. budget performance across global cost centers.</div>
+              </div>
+            </div>
+            <div class="cs-story-item">
+              <div class="cs-story-icon icon-impact">📈</div>
+              <div class="cs-story-text">
+                <div class="cs-story-label lbl-impact">The Impact</div>
+                <div class="cs-story-body">Delivered full visibility to department heads, completely mitigating unapproved overruns and driving proactive budget reallocation.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="cs-metrics">
+            <div><div class="cs-metric-val green">100%</div><div class="cs-metric-lbl">Visibility Achieved</div></div>
+            <div><div class="cs-metric-val blue">DAX</div><div class="cs-metric-lbl">Time-Intelligence</div></div>
+            <div><div class="cs-metric-val amber">Global</div><div class="cs-metric-lbl">Cost Centers</div></div>
+          </div>
+          <div class="cs-stack" style="margin-bottom: 1.25rem;">
+            <span class="stack-tag">Power BI Desktop</span><span class="stack-tag">DAX</span><span class="stack-tag">SQL Server</span><span class="stack-tag">Data Modeling</span><span class="stack-tag">Power BI Service</span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <a href="YOUR_POWER_BI_REPORT_URL_HERE" class="view-report-btn">📊 View Live Interactive Report</a>
+            <button class="code-btn" onclick="openCodeModal('dax_npm')">⚙️ View Core DAX Code</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="csf-preview">
+        <div class="preview-kpi-row">
+          <div class="preview-kpi">
+            <div class="preview-kpi-label">YTD Spend Actual</div>
+            <div class="preview-kpi-val">$4.12M</div>
+            <div class="preview-kpi-delta delta-up">▲ 12% vs LY</div>
+          </div>
+          <div class="preview-kpi">
+            <div class="preview-kpi-label">Remaining Budget</div>
+            <div class="preview-kpi-val">$840K</div>
+            <div class="preview-kpi-delta delta-down">▼ 4% Safety Margin</div>
+          </div>
+        </div>
+        <div class="preview-chart">
+          <div class="preview-chart-label">Monthly Actuals vs Budget Allocation</div>
+          <div class="preview-bars">
+            <div class="preview-bar" style="height: 40%; background: var(--accent);"></div>
+            <div class="preview-bar" style="height: 35%; background: var(--border-dark);"></div>
+            <div class="preview-bar" style="height: 65%; background: var(--accent);"></div>
+            <div class="preview-bar" style="height: 55%; background: var(--border-dark);"></div>
+            <div class="preview-bar" style="height: 85%; background: var(--accent);"></div>
+            <div class="preview-bar" style="height: 80%; background: var(--border-dark);"></div>
+          </div>
+        </div>
+        <div class="preview-table">
+          <div class="preview-table-row" style="background: var(--bg-card); font-weight: 600;">
+            <div style="flex: 2;">Cost Center</div><div style="flex: 1; text-align: right;">Variance</div><div style="flex: 1; text-align: center;">Status</div>
+          </div>
+          <div class="preview-table-row">
+            <div style="flex: 2;">North America Operations</div><div style="flex: 1; text-align: right; color:#166534;">-$45,200</div><div style="flex: 1; display:flex; justify-content:center;"><span class="color-dot-green"></span></div>
+          </div>
+          <div class="preview-table-row">
+            <div style="flex: 2;">Europe Assembly</div><div style="flex: 1; text-align: right; color:#991b1b;">+$128,400</div><div style="flex: 1; display:flex; justify-content:center;"><span class="color-dot-red"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-study-grid">
+    <div class="case-study-card">
+      <div class="csc-preview">
+        <div class="tx-preview-inner">
+          <div style="font-size: 0.62rem; color: var(--ink-mid); font-weight: 600; margin-bottom: 4px;">Medallion Flow Architecture</div>
+          <div class="tx-bar-row">
+            <div class="tx-bar-label">Bronze (Raw)</div>
+            <div class="tx-bar-track"><div class="tx-bar-fill"><div class="tx-bar-val">API Ingestion</div></div></div>
+          </div>
+          <div class="tx-bar-row">
+            <div class="tx-bar-label">Silver (Clean)</div>
+            <div class="tx-bar-track"><div class="tx-bar-fill"><div class="tx-bar-val">Delta Tables</div></div></div>
+          </div>
+          <div class="tx-bar-row">
+            <div class="tx-bar-label">Gold (Business)</div>
+            <div class="tx-bar-track"><div class="tx-bar-fill"><div class="tx-bar-val">Power BI Model</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="csc-content">
+        <span class="cs-type-badge badge-azure">Azure Databricks Pipeline</span>
+        <h3 class="cs-title-sm">Automated Medallion Pipeline for API Operational Data</h3>
+        
+        <div class="cs-story">
+          <div class="cs-story-item">
+            <div class="cs-story-icon icon-problem">🚨</div>
+            <div class="cs-story-text">
+              <div class="cs-story-label lbl-problem">The Problem</div>
+              <div class="cs-story-body">Operational field data from internal systems was heavily siloed inside restricted API endpoints, resulting in slow, manual reporting overheads.</div>
+            </div>
+          </div>
+          <div class="cs-story-item">
+            <div class="cs-story-icon icon-solution">💡</div>
+            <div class="cs-story-text">
+              <div class="cs-story-label lbl-solution">The Solution</div>
+              <div class="cs-story-body">Designed and executed a robust multi-layered Medallion Architecture data pipeline inside Azure Databricks using PySpark. Automations fetch live raw data (Bronze), structure clean tables (Silver), and optimize analytical aggregated layers (Gold).</div>
+            </div>
+          </div>
+          <div class="cs-story-item">
+            <div class="cs-story-icon icon-impact">📈</div>
+            <div class="cs-story-text">
+              <div class="cs-story-label lbl-impact">The Impact</div>
+              <div class="cs-story-body">Eliminated repetitive processing and created a clean, auto-refreshing corporate data source for analytical modeling.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-metrics">
+          <div><div class="cs-metric-val green">Auto</div><div class="cs-metric-lbl">ETL Ingestion</div></div>
+          <div><div class="cs-metric-val blue">PySpark</div><div class="cs-metric-lbl">Optimized</div></div>
+        </div>
+        <div class="cs-stack" style="margin-bottom: 1.25rem;">
+          <span class="stack-tag">Azure Databricks</span><span class="stack-tag">PySpark</span><span class="stack-tag">Delta Lake</span><span class="stack-tag">REST APIs</span>
+        </div>
+        <button class="code-btn" onclick="openCodeModal('pyspark_pipeline')">⚙️ View PySpark Notebook Code</button>
+      </div>
+    </div>
+
+    <div class="case-study-card">
+      <div class="csc-preview">
+        <div class="mini-donut-wrap">
+          <div class="mini-donut">
+            <svg viewBox="0 0 36 36" style="width:100%; height:100%;">
+              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#eee" stroke-width="3"/>
+              <path class="circle" stroke-dasharray="90, 10" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--accent)" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="mini-legend">
+            <div class="mini-legend-item"><span class="mini-legend-dot" style="background: var(--accent);"></span>Automated (90%)</div>
+            <div class="mini-legend-item"><span class="mini-legend-dot" style="background: #eee;"></span>Manual (10%)</div>
+          </div>
+        </div>
+      </div>
+      <div class="csc-content">
+        <span class="cs-type-badge badge-etl">Cloud Infrastructure Integration</span>
+        <h3 class="cs-title-sm">Secure Web Portal Integration via Azure App Services</h3>
+        
+        <div class="cs-story">
+          <div class="cs-story-item">
+            <div class="cs-story-icon icon-problem">🚨</div>
+            <div class="cs-story-text">
+              <div class="cs-story-label lbl-problem">The Problem</div>
+              <div class="cs-story-body">Non-technical operational stakeholders required access to perform fast data-driven adjustments without accessing complex database environments.</div>
+            </div>
+          </div>
+          <div class="cs-story-item">
+            <div class="cs-story-icon icon-solution">💡</div>
+            <div class="cs-story-text">
+              <div class="cs-story-label lbl-solution">The Solution</div>
+              <div class="cs-story-body">Architected and engineered a custom operational portal using Appsmith web tools, deployed onto Azure App Services. Unified access utilizing Azure Key Vault to store operational connection strings and pipeline secrets securely.</div>
+            </div>
+          </div>
+          <div class="cs-story-item">
+            <div class="cs-story-icon icon-impact">📈</div>
+            <div class="cs-story-text">
+              <div class="cs-story-label lbl-impact">The Impact</div>
+              <div class="cs-story-body">Empowered frontline employees to manage system records safely with zero danger of exposed credentials or raw system code breaches.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-metrics">
+          <div><div class="cs-metric-val green">Secure</div><div class="cs-metric-lbl">Key Vault Injected</div></div>
+          <div><div class="cs-metric-val blue">Appsmith</div><div class="cs-metric-lbl">UI Framework</div></div>
+        </div>
+        <div class="cs-stack" style="margin-bottom: 1.25rem;">
+          <span class="stack-tag">Appsmith</span><span class="stack-tag">Azure App Services</span><span class="stack-tag">Key Vault</span><span class="stack-tag">Security</span>
+        </div>
+        <button class="code-btn" onclick="openCodeModal('config_secrets')">⚙️ View Security Configuration</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certification">
+  <div class="section-label">Verified Standards</div>
+  <h2>Professional Certification</h2>
+  <p class="section-intro">Formal Microsoft verification confirming absolute baseline compliance in professional corporate data environments.</p>
+  <div class="cred-grid">
+    <div class="cred-card" style="--cred-color: var(--accent2);">
+      <div class="cred-top">
+        <div class="cred-icon" style="background: rgba(45,106,106,0.1); color: var(--accent2);">🥇</div>
+        <div class="cred-issuer">Microsoft</div>
+      </div>
+      <h3 class="cred-title">Power BI Data Analyst Associate</h3>
+      <div class="cred-sub">Certification Code: PL-300</div>
+      <p class="cred-desc">Validates official professional competency in cleaning, transforming, staging, modeling, building visual architectures, deploying row-level security (RLS), and deploying dynamic report assets.</p>
+      <div class="cred-tags">
+        <span class="cred-tag">Data Modeling</span><span class="cred-tag">DAX Formulas</span><span class="cred-tag">Power Query</span><span class="cred-tag">Security Deployment</span>
+      </div>
+      <div class="cred-badge-strip" style="background: var(--accent-light); border-color: rgba(45,106,106,0.2); color: var(--accent2);">Verified Official Microsoft Associate</div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-label">Targeted Solutions</div>
+  <h2>Consulting Services</h2>
+  <p class="section-intro">Highly optimized service tracks focused entirely on creating business performance clarity.</p>
+  <div class="services-list">
+    <div class="service-item">
+      <div class="service-num">01 / DASHBOARDS</div>
+      <h3>Advanced Corporate Power BI Environments</h3>
+      <p>Transform messy local tracking files, warehouse schemas, or operational databases into highly clean, interactive executive control grids using DAX and structured dimensional modeling.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">02 / PIPELINES</div>
+      <h3>Automated ETL Pipeline Architectures</h3>
+      <p>Clean out time-consuming operational data steps by deploying structured cloud notebook ingestion layers that process raw transaction arrays cleanly directly into analytics-ready destinations.</p>
+    </div>
+    <div class="service-item">
+      <div class="service-num">03 / APPLICATION</div>
+      <h3>Secure Web Tool Integration</h3>
+      <p>Deploy low-code analytical screens or parameter fields connected directly into backend databases using secure cloud container setups and professional security practices.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="justify-content: center;">Get In Touch</div>
+    <h2>Let's Discuss Your Data Project</h2>
+    <p class="section-intro">Available for freelance consulting contracts or full corporate data pipeline modernization engagements.</p>
+    
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="cc-label">Direct Communication</div>
+        <div class="cc-value"><a href="mailto:your.email@example.com">your.email@example.com</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="cc-label">Professional Network</div>
+        <div class="cc-value"><a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></div>
+      </div>
+    </div>
+
+    <div class="agency-note">
+      💼 <strong>Corporate Notice:</strong> For enterprise assignments requiring structured, secure independent billing, engagements can be cleanly executed under <strong>Mishlane Express LLC</strong>.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>&copy; 2026 Rodney Roman. All rights reserved.</div>
+  <div>Built with clean HTML & CSS Structure</div>
+</footer>
+
+<div class="modal-overlay" id="codeModal" onclick="handleOverlayClick(e)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-title" id="modalTitle">Core Portfolio Asset Code</span>
+        <span class="modal-subtitle" id="modalSubtitle">Production Snippet</span>
+      </div>
+      <div class="modal-lang-badge" id="modalLang">CODE</div>
+      <button class="modal-close" onclick="closeCodeModal()">&times;</button>
+    </div>
+    <div class="modal-toolbar">
+      <div class="modal-file-path">📁 project / src / <span id="modalPath">asset_source_file</span></div>
+      <button class="copy-btn" id="copyBtn" onclick="copyCode()">📋 Copy Code</button>
+    </div>
+    <div class="modal-code-wrap">
+      <pre id="codeBlock"></pre>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-footer-note">Code asset rendered securely using verified structural markup blocks.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// RAW CODE REPOSITORY ACCORDING TO DOCUMENT SECTIONS
+const CODE_REPO = {
+  dax_npm: {
+    title: "Global Enterprise NPM Budget Tracker",
+    subtitle: "Advanced DAX Time-Intelligence Calculations",
+    lang: "DAX",
+    path: "NPM_Tracker_Measures.dax",
+    code: `// YTD Spend Actuals with Strict Multi-Currency Context Conversion
+YTD_Spend_Actual = 
+VAR CurrentMaxDate = MAX('Calendar'[Date])
+RETURN
+    CALCULATE(
+        SUM('NPM_Transactions'[USD_Equivalent_Amount]),
+        FILTER(
+            ALL('Calendar'),
+            'Calendar'[Date] <= CurrentMaxDate && 
+            'Calendar'[Year] = MAX('Calendar'[Year])
+        )
+    )
+
+// Dynamic Variance Calculation Against Approved Regional Allotments
+Budget_Variance = [YTD_Spend_Actual] - SUM('NPM_Budgets'[Allocated_Amount])`
+  },
+  pyspark_pipeline: {
+    title: "PySpark Medallion ETL Orchestration Notebook",
+    subtitle: "Bronze-to-Gold Architecture Automation",
+    lang: "PySpark",
+    path: "medallion_pipeline_worker.py",
+    code: `# PySpark Orchestration Notebook Processing Raw Siloed Operational Endpoints
+from pyspark.sql import functions as F
+from pyspark.sql.types import *
+
+def process_bronze_to_silver():
+    # 1. Read raw structured nested batch tables from Azure Storage JSON Ingestion layer
+    raw_df = spark.read.format("delta").load("abfss://bronze@safreightstore.dfs.core.windows.net/operational_raw")
+    
+    # 2. Extract operational records, flatten structural metadata variables, and filter nulls
+    clean_df = raw_df.select(
+        F.col("transaction_id").cast(StringType()).alias("id"),
+        F.col("payload.amount").cast(DecimalType(18,2)).alias("amount"),
+        F.col("timestamp").cast(TimestampType()).alias("processed_at")
+    ).filter("id IS NOT NULL")
+    
+    # 3. Securely commit transaction payload data down into optimized corporate Silver Delta tables
+    clean_df.write.format("delta").mode("append").save("abfss://silver@safreightstore.dfs.core.windows.net/operational_clean")`
+  },
+  config_secrets: {
+    title: "Secure Portal Application Secrets Ingestion",
+    subtitle: "Azure Key Vault Environment Inbound Protection",
+    lang: "JSON / Node",
+    path: "azure_vault_integration.json",
+    code: `{
+  "application_environment": {
+    "deployment_target": "Azure App Services Containers",
+    "portal_ui_framework": "Appsmith Integrated Engine",
+    "vault_identity_reference": "@Microsoft.KeyVault(SecretUri=https://mishlane-vault.vault.azure.net/secrets/db-conn/)",
+    "security_enforcement": "AES_256_Credential_Encryption_Injected",
+    "exposed_credentials": false
+  }
+}`
+  }
+};
+
+let CURRENT_ACTIVE_KEY = '';
+
+function openCodeModal(key) {
+  const asset = CODE_REPO[key];
+  if (!asset) return;
+  
+  CURRENT_ACTIVE_KEY = key;
+  
+  document.getElementById('modalTitle').textContent = asset.title;
+  document.getElementById('modalSubtitle').textContent = asset.subtitle;
+  document.getElementById('modalLang').textContent = asset.lang;
+  document.getElementById('modalPath').textContent = asset.path;
+  
+  // Basic structural presentation renderer
+  const block = document.getElementById('codeBlock');
+  block.textContent = asset.code;
+  
+  const modal = document.getElementById('codeModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCodeModal() {
+  document.getElementById('codeModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('codeModal')) {
+    closeCodeModal();
+  }
+}
+
+function copyCode() {
+  const asset = CODE_REPO[CURRENT_ACTIVE_KEY];
+  if (!asset) return;
+  
+  navigator.clipboard.writeText(asset.code).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy Code';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
